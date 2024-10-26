@@ -1,7 +1,6 @@
 const axios = require("axios");
 const https = require("https");
-const { fetchUserDetailsByUserName } = require("../services/userService");
-
+const { fetchUserDetailsByUserName } = require("../service/userService");
 
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
@@ -28,7 +27,6 @@ exports.getUserDetailByName = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
 
 exports.getUserDetailsByUserName = async (req, res) => {
   try {
