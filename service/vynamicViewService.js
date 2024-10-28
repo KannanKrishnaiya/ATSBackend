@@ -7,7 +7,7 @@ exports.fetchVVDashboardData = async (requestData, authorizationHeader) => {
   try {
     // Send the request to the external API with the passed request data
     const response = await axios.post(
-      "https://20.196.9.136:45080/api/VynamicView/GetVVDashboardData",
+      `${apiBaseUrl}/VynamicView/GetVVDashboardData`,
       requestData,
       {
         httpsAgent,
@@ -30,7 +30,7 @@ exports.fetchAllMachinesUpTimePercentage = async (
   try {
     // Make the request to the external API with incoming data
     const response = await axios.post(
-      "https://20.196.9.136:45080/api/VynamicView/GetVV_AllMachinesUpTimePercentage",
+      `${apiBaseUrl}/VynamicView/GetVV_AllMachinesUpTimePercentage`,
       requestData,
       {
         httpsAgent,
@@ -51,7 +51,7 @@ exports.fetchCassetteAverage = async (requestData, authorizationHeader) => {
   try {
     // Make the request to the external API with incoming data
     const response = await axios.post(
-      "https://20.196.9.136:45080/api/VynamicView/CassetteAverageCalculation",
+      `${apiBaseUrl}/VynamicView/CassetteAverageCalculation`,
       requestData,
       {
         httpsAgent,
@@ -76,7 +76,7 @@ exports.fetchCasseteCounterDenomination = async (
   try {
     // Make the request to the external API with incoming data
     const response = await axios.post(
-      "https://20.196.9.136:45080/api/VynamicView/CasseteCounterDenomination",
+      `${apiBaseUrl}/VynamicView/CasseteCounterDenomination`,
       requestData,
       {
         httpsAgent,

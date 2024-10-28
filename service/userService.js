@@ -10,7 +10,7 @@ exports.fetchUserDetailsByUserName = async (
   try {
     // Make the request to the external API with incoming data
     const response = await axios.post(
-      "https://20.196.9.136:45080/api/user/GetUserDetailsByUserName",
+      `${apiBaseUrl}/user/GetUserDetailsByUserName`,
       requestData,
       {
         httpsAgent,

@@ -30,6 +30,7 @@
 const axios = require("axios");
 const https = require("https");
 
+
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 exports.getToken = async (req, res) => {
@@ -43,7 +44,7 @@ exports.getToken = async (req, res) => {
 
   try {
     const response = await axios.post(
-      "https://20.196.9.136:45080/Token",
+      `https://20.196.9.136:45080/Token`,
       formData.toString(),
       {
         httpsAgent,

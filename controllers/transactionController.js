@@ -5,6 +5,7 @@ const {
 const { fetchCassetteRepConfig } = require("../service/transactionService");
 const { fetchCassetteRepForecast } = require("../service/transactionService");
 
+
 exports.getAllFailedTransactions = async (req, res) => {
   try {
     // Call the service with request data and headers

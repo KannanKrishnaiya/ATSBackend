@@ -7,7 +7,7 @@ exports.fetchAllMachineDetails = async (requestData, authorizationHeader) => {
   try {
     // Make the request to the external API with incoming data
     const response = await axios.post(
-      "https://20.196.9.136:45080/api/VynamicView/Get_AllMachineDetails",
+      `${apiBaseUrl}/VynamicView/Get_AllMachineDetails`,
       requestData,
       {
         httpsAgent,
