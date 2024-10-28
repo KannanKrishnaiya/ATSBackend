@@ -1,5 +1,6 @@
 const axios = require("axios");
 const https = require("https");
+const { apiBaseUrl } = require("../config");
 
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 

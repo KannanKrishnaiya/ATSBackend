@@ -29,29 +29,20 @@
 
 const axios = require("axios");
 const https = require("https");
-
+const { apiBaseUrl } = require("../config");
 
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 exports.getToken = async (req, res) => {
-  const { username, password } = req.body;
-
-  const formData = new URLSearchParams({
-    username, 
-    password,
-    grant_type: "password", 
-  });
+  console.log(req.body);
 
   try {
-    const response = await axios.post(
-      `https://20.196.9.136:45080/Token`,
-      formData.toString(),
-      {
-        httpsAgent,
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      }
-    );
-
+    const response = await axios.post(`${apiBaseUrl}/Auth/login`, req.body, {
+      httpsAgent,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     res.json(response.data);
   } catch (error) {
