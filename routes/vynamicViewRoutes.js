@@ -12,6 +12,8 @@ const {
 
 const { getVVMachinesUpTime } = require("../controllers/vynamicViewController");
 
+const { getVVIMAllTicket } = require("../controllers/vynamicViewController");
+
 const router = express.Router();
 
 // Route to bypass data to external API
@@ -30,5 +32,7 @@ router.post(
 );
 
 router.post("/api/VynamicView/GetVV_MachinesUpTime", getVVMachinesUpTime);
+
+router.post("/api/VynamicView/Get_VVIM_ALL_TICKET", getVVIMAllTicket);
 
 module.exports = router;

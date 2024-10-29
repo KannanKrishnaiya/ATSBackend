@@ -9,6 +9,8 @@ const {
 
 const { fetchVVMachinesUpTime } = require("../service/vynamicViewService");
 
+const { fetchVVIMAllTicket } = require("../service/vynamicViewService");
+
 exports.getVVDashboardData = async (req, res) => {
   try {
     // Pass the request data and authorization header to the service
@@ -72,6 +74,17 @@ exports.getVVMachinesUpTime = async (req, res) => {
       req.headers.authorization
     );
     res.json(data);
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.getVVIMAllTicket = async (req, res) => {
+  try {
+    // Call the service with request data and headers
+    const data = await fetchVVIMAllTicket(req.body, req.headers.authorization);
+    res.json(data); // Send the response back to the client
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: error.message });

@@ -112,3 +112,24 @@ exports.fetchVVMachinesUpTime = async (requestData, authorizationHeader) => {
     throw new Error(error.response?.data || error.message);
   }
 };
+
+
+exports.fetchVVIMAllTicket = async (requestData, authorizationHeader) => {
+  try {
+    // Make the request to the external API with the incoming request data
+    const response = await axios.post(
+      `${apiBaseUrl}/VynamicView/Get_VVIM_ALL_TICKET`,
+      requestData,
+      {
+        httpsAgent,
+        headers: {
+          Authorization: authorizationHeader,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};
