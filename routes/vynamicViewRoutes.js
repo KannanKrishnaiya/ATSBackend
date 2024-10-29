@@ -10,6 +10,8 @@ const {
   getCasseteCounterDenomination,
 } = require("../controllers/vynamicViewController");
 
+const { getVVMachinesUpTime } = require("../controllers/vynamicViewController");
+
 const router = express.Router();
 
 // Route to bypass data to external API
@@ -26,5 +28,7 @@ router.post(
   "/api/VynamicView/CasseteCounterDenomination",
   getCasseteCounterDenomination
 );
+
+router.post("/api/VynamicView/GetVV_MachinesUpTime", getVVMachinesUpTime);
 
 module.exports = router;

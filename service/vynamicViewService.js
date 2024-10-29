@@ -92,3 +92,23 @@ exports.fetchCasseteCounterDenomination = async (
     throw new Error(error.response?.data || error.message);
   }
 };
+
+
+exports.fetchVVMachinesUpTime = async (requestData, authorizationHeader) => {
+  try {
+    const response = await axios.post(
+      `${apiBaseUrl}/VynamicView/GetVV_MachinesUpTime`,
+      requestData,
+      {
+        httpsAgent,
+        headers: {
+          Authorization: authorizationHeader,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};

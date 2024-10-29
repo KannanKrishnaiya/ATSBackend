@@ -11,10 +11,14 @@ const machineRoutes = require("./routes/machineRoutes");
 const { port } = require("./config");
 
 const app = express();
-const ports = port || 5050;
+const ports = port || 35082;
 
 app.use(cors());
 app.use(express.json());
+
+app.get("/test", (req, res) => {
+  res.send("Node Server is up and running successfully");
+});
 
 // Use Routes
 app.use(authRoutes);
@@ -24,6 +28,6 @@ app.use(transactionRoutes);
 app.use(lookupRoutes);
 app.use(machineRoutes);
 
-app.listen(ports, () => {
+app.listen(ports, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${ports}`);
 });
