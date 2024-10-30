@@ -34,7 +34,6 @@ const { apiBaseUrl } = require("../config");
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 exports.getToken = async (req, res) => {
-  console.log(req.body);
 
   try {
     const response = await axios.post(`${apiBaseUrl}/Auth/login`, req.body, {

@@ -27,7 +27,7 @@ const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 //   }
 // };
 
-console.log(apiBaseUrl);
+
 
 
 exports.fetchCassetteRepConfig = async (requestData, authorizationHeader) => {
@@ -183,7 +183,7 @@ exports.fetchOtherTransactions = async (requestData, authorizationHeader) => {
 };
 
 exports.fetchTransactionDetails = async (requestData, authorizationHeader) => {
-  console.log({ requestData, authorizationHeader });
+
 
   try {
     const response = await axios.post(

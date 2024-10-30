@@ -28,6 +28,6 @@ app.use(transactionRoutes);
 app.use(lookupRoutes);
 app.use(machineRoutes);
 
-app.listen(ports, '0.0.0.0', () => {
+app.listen(ports, "0.0.0.0", () => {
   console.log(`Server is running on http://localhost:${ports}`);
 });
