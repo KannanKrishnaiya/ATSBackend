@@ -21,7 +21,7 @@ exports.getUserDetailByName = async (req, res) => {
         },
       }
     );
-    console.log("Response from external API:", response.data);
+   
     res.json(response.data);
   } catch (error) {
     console.error("Error:", error.message);
