@@ -12,6 +12,7 @@ const {
   getCashDepositCassetteDetails,
   getChequeDepositDetails,
   getCashWithdrawalCassetteDetails,
+  calcCashRepForecast,
 } = require("../controllers/transactionController");
 
 const router = express.Router();
@@ -56,5 +57,7 @@ router.post("/api/Transactions/GetChequeDepositDetails", getChequeDepositDetails
 
 
 router.post("/api/Transactions/GetCashWithdrawalCassetteDetails", getCashWithdrawalCassetteDetails);
+
+router.post("/api/Transactions/Calc_CashRepForecast", calcCashRepForecast);
 
 module.exports = router;

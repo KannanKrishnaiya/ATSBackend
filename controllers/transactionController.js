@@ -11,6 +11,7 @@ const {
   fetchCashDepositCassetteDetails,
   fetchChequeDepositDetails,
   fetchCashWithdrawalCassetteDetails,
+  fetchCalcCashRepForecast,
 } = require("../service/transactionService");
 
 
@@ -170,6 +171,21 @@ exports.getCashWithdrawalCassetteDetails = async (req, res) => {
       req.headers.authorization
     );
     res.json(data);
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+exports.calcCashRepForecast = async (req, res) => {
+  try {
+    // Call the service with request data and headers
+    const data = await fetchCalcCashRepForecast(
+      req.body,
+      req.headers.authorization
+    );
+    res.json(data); // Send the response back to the client
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: error.message });
