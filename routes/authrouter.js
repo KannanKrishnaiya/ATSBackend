@@ -11,13 +11,24 @@
 // module.exports = router;
 
 const express = require("express");
-const { getToken } = require("../controllers/authController");
-// const { getUserDetailByName } = require("../controllers/userController");
+const {
+  getToken,
+  register,
+  updatePassword,
+  resetPassword,
+  checkUserExists,
+  getAllUsers,
+} = require("../controllers/authController");
 
 const router = express.Router();
 
 // Routes
 router.post("/api/Auth/login", getToken);
-// router.post("/api/User/GetUserRoleDetailsByName", getUserDetailByName);
+
+router.post("/api/Auth/Register", register);
+router.post("/api/Auth/UpdatePassword", updatePassword);
+router.post("/api/Auth/ResetPassword", resetPassword);
+router.post("/api/Auth/CheckUserExists", checkUserExists);
+router.get("/api/Auth/GetAllUsers", getAllUsers);
 
 module.exports = router;
