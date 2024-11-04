@@ -26,3 +26,17 @@ exports.fetchUserDetailsByUserName = async (
     throw new Error(error.response?.data || error.message);
   }
 };
+
+exports.fetchAllUsers = async (authorizationHeader) => {
+  try {
+    const response = await axios.get(`${apiBaseUrl}/User/GetAllUsers`, {
+      httpsAgent,
+      headers: {
+        Authorization: authorizationHeader,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};

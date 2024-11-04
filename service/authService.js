@@ -4,12 +4,20 @@ const { apiBaseUrl } = require("../config");
 
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
-exports.registerUser = async (requestData) => {
+exports.fetchRegisterUser = async (requestData, authorizationHeader) => {
+  console.log(requestData);
+
   try {
     const response = await axios.post(
-      `${apiBaseUrl}i/Auth/Register`,
+      `${apiBaseUrl}/Auth/Register`,
       requestData,
-      { httpsAgent, headers: { "Content-Type": "application/json" } }
+      {
+        httpsAgent,
+        headers: {
+          Authorization: authorizationHeader,
+          "Content-Type": "application/json",
+        },
+      }
     );
     return response.data;
   } catch (error) {
@@ -18,7 +26,6 @@ exports.registerUser = async (requestData) => {
 };
 
 exports.updatePassword = async (requestData, token) => {
-
   try {
     const response = await axios.post(
       `${apiBaseUrl}/Auth/UpdatePassword`,
@@ -37,12 +44,18 @@ exports.updatePassword = async (requestData, token) => {
   }
 };
 
-exports.resetPassword = async (requestData) => {
+exports.resetPassword = async (requestData, token) => {
   try {
     const response = await axios.post(
       `${apiBaseUrl}/Auth/ResetPassword`,
       requestData,
-      { httpsAgent, headers: { "Content-Type": "application/json" } }
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+        httpsAgent,
+      }
     );
     return response.data;
   } catch (error) {
@@ -50,27 +63,19 @@ exports.resetPassword = async (requestData) => {
   }
 };
 
-exports.checkUserExists = async (requestData) => {
+exports.fetchCheckUserExists = async (requestData, authorizationHeader) => {
   try {
     const response = await axios.post(
       `${apiBaseUrl}/Auth/CheckUserExists`,
       requestData,
-      { httpsAgent, headers: { "Content-Type": "application/json" } }
+      {
+        httpsAgent,
+        headers: {
+          Authorization: authorizationHeader,
+          "Content-Type": "application/json",
+        },
+      }
     );
-    return response.data;
-  } catch (error) {
-    throw new Error(error.response?.data || error.message);
-  }
-};
-
-exports.fetchAllUsers = async (authorizationHeader) => {
-  try {
-    const response = await axios.get(`${apiBaseUrl}/Auth/GetAllUsers`, {
-      httpsAgent,
-      headers: {
-        Authorization: authorizationHeader,
-      },
-    });
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data || error.message);

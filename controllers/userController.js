@@ -1,6 +1,6 @@
 const axios = require("axios");
 const https = require("https");
-const { fetchUserDetailsByUserName } = require("../service/userService");
+const { fetchUserDetailsByUserName, fetchAllUsers } = require("../service/userService");
 const { apiBaseUrl } = require("../config");
 
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
@@ -37,6 +37,18 @@ exports.getUserDetailsByUserName = async (req, res) => {
       req.headers.authorization
     );
     res.json(data); // Send the received data back to the client
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+exports.getAllUsers = async (req, res) => {
+  const token = req.headers.authorization;
+
+  try {
+    const data = await fetchAllUsers(token);
+    res.json(data);
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: error.message });

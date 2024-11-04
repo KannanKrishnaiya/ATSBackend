@@ -34,11 +34,11 @@ const { apiBaseUrl } = require("../config");
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 const {
-  registerUser,
   updatePassword,
   resetPassword,
   checkUserExists,
-  fetchAllUsers,
+  fetchCheckUserExists,
+  fetchRegisterUser,
 } = require("../service/authService");
 
 exports.getToken = async (req, res) => {
@@ -59,10 +59,11 @@ exports.getToken = async (req, res) => {
 };
 
 
-exports.register = async (req, res) => {
+exports.registerUser = async (req, res) => {
+  const token = req.headers.authorization; 
   try {
-    const data = await registerUser(req.body);
-    res.json(data);
+    const data = await fetchRegisterUser(req.body, token);
+    res.json(data); 
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: error.message });
@@ -82,30 +83,24 @@ exports.updatePassword = async (req, res) => {
 
 exports.resetPassword = async (req, res) => {
   try {
-    const data = await resetPassword(req.body);
+   const requestData = req.body; 
+     const data = await resetPassword(requestData, req.headers.authorization);
     res.json(data);
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: error.message });
   }
 };
+
+
 
 exports.checkUserExists = async (req, res) => {
-  try {
-    const data = await checkUserExists(req.body);
-    res.json(data);
-  } catch (error) {
-    console.error("Error:", error.message);
-    res.status(500).json({ error: error.message });
-  }
-};
-
-exports.getAllUsers = async (req, res) => {
   const token = req.headers.authorization; 
 
   try {
-    const data = await fetchAllUsers(token);
-    res.json(data);
+   
+    const data = await fetchCheckUserExists(req.body, token);
+    res.json(data); 
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: error.message });
