@@ -81,3 +81,42 @@ exports.fetchCheckUserExists = async (requestData, authorizationHeader) => {
     throw new Error(error.response?.data || error.message);
   }
 };
+
+
+exports.fetchLogoutUser = async (requestData, authorizationHeader) => {
+  try {
+    const response = await axios.post(
+      `${apiBaseUrl}/Auth/logout`,
+      requestData,
+      {
+        httpsAgent,
+        headers: {
+          Authorization: authorizationHeader,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};
+
+exports.fetchUpdateUser = async (requestData, authorizationHeader) => {
+  try {
+    const response = await axios.post(
+      `${apiBaseUrl}/Auth/UpdateUser`,
+      requestData,
+      {
+        httpsAgent,
+        headers: {
+          Authorization: authorizationHeader,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};

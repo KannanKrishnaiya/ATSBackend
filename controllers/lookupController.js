@@ -1,6 +1,7 @@
 const {
   fetchLookups,
   fetchLookupUserRoles,
+  fetchLookupsBanks,
 } = require("../service/lookupService");
 
 exports.getLookups = async (req, res) => {
@@ -21,6 +22,17 @@ exports.getLookupUserRoles = async (req, res) => {
   try {
     const data = await fetchLookupUserRoles(req.body, token); 
     res.json(data);
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+exports.getLookupsBanks = async (req, res) => {
+  try {
+    const data = await fetchLookupsBanks(req.headers.authorization);
+    res.json(data); 
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ error: error.message });

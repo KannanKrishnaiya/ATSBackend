@@ -39,6 +39,8 @@ const {
   checkUserExists,
   fetchCheckUserExists,
   fetchRegisterUser,
+  fetchLogoutUser,
+  fetchUpdateUser,
 } = require("../service/authService");
 
 exports.getToken = async (req, res) => {
@@ -100,6 +102,28 @@ exports.checkUserExists = async (req, res) => {
   try {
    
     const data = await fetchCheckUserExists(req.body, token);
+    res.json(data); 
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+exports.logoutUser = async (req, res) => {
+  try {
+    const data = await fetchLogoutUser(req.body, req.headers.authorization);
+    res.json(data); 
+  } catch (error) {
+    console.error("Error:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+exports.updateUser = async (req, res) => {
+  try {
+    const data = await fetchUpdateUser(req.body, req.headers.authorization);
     res.json(data); 
   } catch (error) {
     console.error("Error:", error.message);

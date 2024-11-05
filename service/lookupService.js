@@ -44,3 +44,18 @@ exports.fetchLookupUserRoles = async (requestData, authorizationHeader) => {
     throw new Error(error.response?.data || error.message);
   }
 };
+
+
+exports.fetchLookupsBanks = async (authorizationHeader) => {
+  try {
+    const response = await axios.post(`${apiBaseUrl}/Lookups/GetLookupsBanks`, {
+      httpsAgent,
+      headers: {
+        Authorization: authorizationHeader,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};
