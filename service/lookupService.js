@@ -46,14 +46,19 @@ exports.fetchLookupUserRoles = async (requestData, authorizationHeader) => {
 };
 
 
-exports.fetchLookupsBanks = async (authorizationHeader) => {
+exports.fetchLookupsBanks = async (requestData,authorizationHeader) => {
   try {
-    const response = await axios.post(`${apiBaseUrl}/Lookups/GetLookupsBanks`, {
-      httpsAgent,
-      headers: {
-        Authorization: authorizationHeader,
-      },
-    });
+    const response = await axios.post(
+      `${apiBaseUrl}/Lookups/GetLookupsBanks`,
+      requestData,
+      {
+        httpsAgent,
+        headers: {
+          Authorization: authorizationHeader,
+          "Content-Type": "application/json",
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data || error.message);

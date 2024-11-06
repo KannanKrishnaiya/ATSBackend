@@ -30,8 +30,9 @@ exports.getLookupUserRoles = async (req, res) => {
 
 
 exports.getLookupsBanks = async (req, res) => {
+  const token = req.headers.authorization; 
   try {
-    const data = await fetchLookupsBanks(req.headers.authorization);
+    const data = await fetchLookupsBanks(req.body, token);
     res.json(data); 
   } catch (error) {
     console.error("Error:", error.message);

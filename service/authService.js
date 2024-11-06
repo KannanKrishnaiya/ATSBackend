@@ -5,7 +5,7 @@ const { apiBaseUrl } = require("../config");
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 exports.fetchRegisterUser = async (requestData, authorizationHeader) => {
-  console.log(requestData);
+
 
   try {
     const response = await axios.post(
