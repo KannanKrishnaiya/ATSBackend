@@ -133,3 +133,41 @@ exports.fetchVVIMAllTicket = async (requestData, authorizationHeader) => {
     throw new Error(error.response?.data || error.message);
   }
 };
+
+exports.fetchCurrentCDMLevel = async (requestData, authorizationHeader) => {
+  try {
+    const response = await axios.post(
+      `${apiBaseUrl}/VynamicView/CurrentCDMLevel`,
+      requestData,
+      {
+        httpsAgent,
+        headers: {
+          Authorization: authorizationHeader,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};
+
+exports.fetchChequeClearanceRpt = async (requestData, authorizationHeader) => {
+  try {
+    const response = await axios.post(
+      `${apiBaseUrl}/VynamicView/ChequeClearanceRpt`,
+      requestData,
+      {
+        httpsAgent,
+        headers: {
+          Authorization: authorizationHeader,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message);
+  }
+};
