@@ -120,3 +120,23 @@ exports.fetchUpdateUser = async (requestData, authorizationHeader) => {
     throw new Error(error.response?.data || error.message);
   }
 };
+
+
+
+exports.fetchRefreshToken = async (requestData) => {
+  try {
+    const response = await axios.post(
+      `${apiBaseUrl}/Auth/RefreshToken`,
+      requestData,
+      {
+        httpsAgent,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data; 
+  } catch (error) {
+    throw new Error(error.response?.data || error.message); // Handle any errors
+  }
+};

@@ -19,6 +19,7 @@ const {
   registerUser,
   logoutUser,
   updateUser,
+  refreshToken,
 } = require("../controllers/authController");
 
 const router = express.Router();
@@ -31,5 +32,6 @@ router.post("/api/Auth/UpdateUser", updateUser);
 router.post("/api/Auth/UpdatePassword", updatePassword);
 router.post("/api/Auth/ResetPassword", resetPassword);
 router.post("/api/Auth/CheckUserExists", checkUserExists);
+router.post("/api/Auth/RefreshToken", refreshToken);
 
 module.exports = router;
