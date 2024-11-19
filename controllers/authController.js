@@ -134,7 +134,7 @@ exports.updateUser = async (req, res) => {
 
 exports.refreshToken = async (req, res) => {
   try {
-    const data = await fetchRefreshToken(req.body);
+    const data = await fetchRefreshToken(req.body, req.headers.authorization);
     res.json(data); 
   } catch (error) {
     console.error("Error:", error.message);

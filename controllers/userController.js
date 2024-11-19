@@ -5,13 +5,13 @@ const { apiBaseUrl } = require("../config");
 
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
-exports.getUserDetailByName = async (req, res) => {
+exports.getUserDetailByEmail = async (req, res) => {
   const { UserName } = req.body;
   const token = req.headers.authorization.split(" ")[1];
 
   try {
     const response = await axios.post(
-      `${apiBaseUrl}/User/GetUserRoleDetailsByName`,
+      `${apiBaseUrl}/User/GetUserRoleDetailsByEmail`,
       req.body,
       {
         httpsAgent,

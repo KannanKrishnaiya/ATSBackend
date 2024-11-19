@@ -123,7 +123,7 @@ exports.fetchUpdateUser = async (requestData, authorizationHeader) => {
 
 
 
-exports.fetchRefreshToken = async (requestData) => {
+exports.fetchRefreshToken = async (requestData, authorizationHeader) => {
   try {
     const response = await axios.post(
       `${apiBaseUrl}/Auth/RefreshToken`,
@@ -131,12 +131,13 @@ exports.fetchRefreshToken = async (requestData) => {
       {
         httpsAgent,
         headers: {
+          Authorization: authorizationHeader,
           "Content-Type": "application/json",
         },
       }
     );
-    return response.data; 
+    return response.data;
   } catch (error) {
-    throw new Error(error.response?.data || error.message); // Handle any errors
+    throw new Error(error.response?.data || error.message); 
   }
 };
