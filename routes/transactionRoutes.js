@@ -13,6 +13,7 @@ const {
   getChequeDepositDetails,
   getCashWithdrawalCassetteDetails,
   calcCashRepForecast,
+  getAllMailConfig,
 } = require("../controllers/transactionController");
 
 const router = express.Router();
@@ -59,5 +60,7 @@ router.post("/api/Transactions/GetChequeDepositDetails", getChequeDepositDetails
 router.post("/api/Transactions/GetCashWithdrawalCassetteDetails", getCashWithdrawalCassetteDetails);
 
 router.post("/api/Transactions/Calc_CashRepForecast", calcCashRepForecast);
+
+router.get("/api/Transactions/GetAllMailConfig", getAllMailConfig);
 
 module.exports = router;

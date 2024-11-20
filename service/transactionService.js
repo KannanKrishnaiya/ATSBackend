@@ -289,3 +289,21 @@ exports.fetchCalcCashRepForecast = async (requestData, authorizationHeader) => {
     throw new Error(error.response?.data || error.message);
   }
 };
+
+
+exports.fetchAllMailConfig = async (authorizationHeader) => {
+  try {
+    const response = await axios.get(
+      `${apiBaseUrl}/Transactions/GetAllMailConfig`,
+      {
+        httpsAgent,
+        headers: {
+          Authorization: authorizationHeader,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data || error.message); 
+  }
+};
